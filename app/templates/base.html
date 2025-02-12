@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>My Dynamic Python Web Development Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Python Web Development Website</h1>
+    </header>
+    <nav>
+        <a href="login">Login</a> 🤝 |
+        <a href="logout">Logout</a> ⇲
+    </nav>
+    <main>
+        <p>Hello {% if name %}{{name}}{% endif %}</p> 
+    </main>
+    <footer>
+        🔒 {% if session %} Session Name: {{session}} {% endif %}
+        &copy; 2023 My Python Web Development Website
+    </footer>
+</body>
+</html>
