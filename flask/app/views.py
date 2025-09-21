@@ -1,5 +1,6 @@
+
 # Import the Flask class for Python web development
-from flask import render_template, redirect, url_for, session, request, flash
+from flask import render_template, redirect, url_for, session, request, flash, jsonify
 from flask_bootstrap import Bootstrap5
 
 from flask_wtf import FlaskForm, CSRFProtect
@@ -72,5 +73,24 @@ def index():
 #    csrf = CSRFProtect(app)
 #
 
+@app.route('/cache-me')
+def cache():
+	return "nginx will cache this response"
 
+
+@app.route('/info')
+def info():
+
+	resp = {
+		'connecting_ip': request.headers['X-Real-IP'],
+		'proxy_ip': request.headers['X-Forwarded-For'],
+		'host': request.headers['Host'],
+		'user-agent': request.headers['User-Agent']
+	}
+
+	return jsonify(resp)
+
+@app.route('/flask-health-check')
+def flask_health_check():
+	return "success"
 
